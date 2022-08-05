@@ -16,6 +16,28 @@ where
   query = 'steampipe.io'
 ```
 
+### Enumerate and discover subdomains for a domain via certificate transparency
+
+```sql
+with raw_domains as (
+  select distinct
+    jsonb_array_elements_text(dns_names) as domain
+  from
+    crtsh_certificate
+  where
+    query = 'steampipe.io'
+)
+select
+  *
+from
+  raw_domains
+where
+  -- filter out mixed domains (e.g. from shared status page services)
+  domain like '%steampipe.io'
+order by
+  domain
+```
+
 ### Get a specific certificate by crt.sh ID
 
 ```sql
@@ -26,21 +48,6 @@ from
   crtsh_certificate
 where
   id = 7203584052
-```
-
-### Current certificates for a specific domain
-
-```sql
-select
-  dns_names,
-  not_after
-from
-  crtsh_certificate
-where
-  query = 'cloud.steampipe.io'
-  and dns_names ? 'cloud.steampipe.io'
-  and not_before < now()
-  and not_after > now()
 ```
 
 ### Certificates valid at the current time
@@ -54,6 +61,21 @@ from
   crtsh_certificate
 where
   query = 'steampipe.io'
+  and not_before < now()
+  and not_after > now()
+```
+
+### Current certificates for a specific domain
+
+```sql
+select
+  dns_names,
+  not_after
+from
+  crtsh_certificate
+where
+  query = 'cloud.steampipe.io'
+  and dns_names ? 'cloud.steampipe.io'
   and not_before < now()
   and not_after > now()
 ```

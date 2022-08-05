@@ -52,6 +52,40 @@ where
 +------------------------+---------------------------+
 ```
 
+Enumerate and discover subdomains for a given domain:
+
+```sql
+with raw_domains as (
+  -- Search for any certificates matching steampipe.io
+  select distinct
+    jsonb_array_elements_text(dns_names) as domain
+  from
+    crtsh_certificate
+  where
+    query = 'steampipe.io'
+)
+select
+  *
+from
+  raw_domains
+where
+  -- filter out mixed domains (e.g. from shared status page services)
+  domain like '%steampipe.io'
+order by
+  domain
+```
+
+```
++--------------------+
+| domain             |
++--------------------+
+| cloud.steampipe.io |
+| hub.steampipe.io   |
+| steampipe.io       |
+| www.steampipe.io   |
++--------------------+
+```
+
 ## Developing
 
 Prerequisites:
