@@ -1,0 +1,3 @@
+connection "crtsh" {
+  plugin = "crtsh"
+}
