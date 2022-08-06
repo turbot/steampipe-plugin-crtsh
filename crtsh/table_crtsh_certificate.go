@@ -16,7 +16,7 @@ import (
 func tableCrtshCertificate() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_certificate",
-		Description: "TODO",
+		Description: "Certificates recorded in transparency logs.",
 		List: &plugin.ListConfig{
 			Hydrate: listCertificate,
 			KeyColumns: []*plugin.KeyColumn{

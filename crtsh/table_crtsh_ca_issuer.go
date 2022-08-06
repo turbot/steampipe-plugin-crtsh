@@ -14,7 +14,7 @@ import (
 func tableCrtshCaIssuer() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_ca_issuer",
-		Description: "TODO",
+		Description: "Certificate Authority Issuers known to crt.sh, including the status of their last check.",
 		List: &plugin.ListConfig{
 			Hydrate: listCaIssuer,
 			KeyColumns: []*plugin.KeyColumn{

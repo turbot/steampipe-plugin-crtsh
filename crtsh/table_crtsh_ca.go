@@ -11,7 +11,7 @@ import (
 func tableCrtshCa() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_ca",
-		Description: "TODO",
+		Description: "Certificate authorities.",
 		List: &plugin.ListConfig{
 			Hydrate: listCa,
 			KeyColumns: []*plugin.KeyColumn{

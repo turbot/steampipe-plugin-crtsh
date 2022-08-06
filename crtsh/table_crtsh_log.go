@@ -12,7 +12,7 @@ import (
 func tableCrtshLog() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_log",
-		Description: "Certificate transparency log operators that track and record log entries.",
+		Description: "Certificate transparency log operators.",
 		List: &plugin.ListConfig{
 			Hydrate: listLog,
 		},

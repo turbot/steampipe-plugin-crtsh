@@ -11,7 +11,7 @@ import (
 func tableCrtshLogEntry() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_log_entry",
-		Description: "Certificate transparency log operators that track and record log entries.",
+		Description: "Certificate transparency log entries recorded for each certificate.",
 		List: &plugin.ListConfig{
 			Hydrate: listLogEntry,
 			KeyColumns: []*plugin.KeyColumn{
