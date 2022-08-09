@@ -5,8 +5,7 @@ go 1.19
 require (
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/lib/pq v1.10.2
-	github.com/turbot/go-kit v0.4.0
-	github.com/turbot/steampipe-plugin-sdk/v4 v4.0.0
+	github.com/turbot/steampipe-plugin-sdk/v4 v4.0.1-rc.1
 )
 
 require (
@@ -60,6 +59,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/stevenle/topsort v0.0.0-20130922064739-8130c1d7596b // indirect
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
+	github.com/turbot/go-kit v0.4.0 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	go.opentelemetry.io/otel v1.7.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.7.0 // indirect

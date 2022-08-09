@@ -1,6 +1,6 @@
 # Table: crtsh_ca_issuer
 
-Certificate Authority Issuers known to crt.sh, including the status of their last check.
+Certificate Authority Issuers (certificate URLs) known to crt.sh, including the status of their last check.
 
 ## Examples
 

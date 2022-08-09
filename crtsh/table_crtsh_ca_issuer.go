@@ -14,7 +14,7 @@ import (
 func tableCrtshCaIssuer() *plugin.Table {
 	return &plugin.Table{
 		Name:        "crtsh_ca_issuer",
-		Description: "Certificate Authority Issuers known to crt.sh, including the status of their last check.",
+		Description: "Certificate Authority Issuers (certificate URLs) known to crt.sh, including the status of their last check.",
 		List: &plugin.ListConfig{
 			Hydrate: listCaIssuer,
 			KeyColumns: []*plugin.KeyColumn{
@@ -32,14 +32,14 @@ func tableCrtshCaIssuer() *plugin.Table {
 			// Top columns
 			{Name: "ca_id", Type: proto.ColumnType_INT, Description: "Unique ID of the CA represented by this issuer record."},
 			{Name: "url", Type: proto.ColumnType_STRING, Description: "URL of the CA represented by this issuer record."},
-			{Name: "result", Type: proto.ColumnType_STRING, Description: "Status of the certificate last issued by CA."},
-			{Name: "ca_certificate_ids", Type: proto.ColumnType_JSON, Description: "Certificate IDs issued by the CA issuer."},
+			{Name: "result", Type: proto.ColumnType_STRING, Description: "Status of last check of the CA issuer."},
+			{Name: "ca_certificate_ids", Type: proto.ColumnType_JSON, Description: "Certificate IDs used by the CA issuer."},
 			{Name: "first_certificate_id", Type: proto.ColumnType_INT, Description: "First certificate ID issued by the CA issuer."},
-			{Name: "is_active", Type: proto.ColumnType_BOOL, Description: "True if the certificate is active."},
-			{Name: "content_type", Type: proto.ColumnType_STRING, Description: "Content of the certifcate issued by the CA."},
+			{Name: "is_active", Type: proto.ColumnType_BOOL, Description: "True if the CA is active."},
+			{Name: "content_type", Type: proto.ColumnType_STRING, Description: "Content type of the issuer certificate."},
 			// Other columns
-			{Name: "next_check_due", Type: proto.ColumnType_TIMESTAMP, Description: "Time when the certificate will be checked next."},
 			{Name: "last_checked", Type: proto.ColumnType_TIMESTAMP, Description: "Time when the certificate was last checked."},
+			{Name: "next_check_due", Type: proto.ColumnType_TIMESTAMP, Description: "Time when the certificate will be checked next."},
 		},
 	}
 }
