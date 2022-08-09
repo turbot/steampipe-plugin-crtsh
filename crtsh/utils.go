@@ -16,17 +16,10 @@ import (
 	"time"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/turbot/go-kit/types"
 
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
-
-func linesToStringArray(_ context.Context, d *transform.TransformData) (interface{}, error) {
-	lines := types.SafeString(d.Value)
-	re := regexp.MustCompile("\r?\n")
-	return re.Split(lines, -1), nil
-}
 
 func byteArrayToString(_ context.Context, d *transform.TransformData) (interface{}, error) {
 	ba := d.Value.([]byte)
