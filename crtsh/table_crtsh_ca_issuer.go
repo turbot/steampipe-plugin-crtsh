@@ -31,15 +31,15 @@ func tableCrtshCaIssuer() *plugin.Table {
 		Columns: []*plugin.Column{
 			// Top columns
 			{Name: "ca_id", Type: proto.ColumnType_INT, Description: "Unique ID of the CA represented by this issuer record."},
-			{Name: "url", Type: proto.ColumnType_STRING, Description: ""},
-			{Name: "result", Type: proto.ColumnType_STRING, Description: ""},
-			{Name: "ca_certificate_ids", Type: proto.ColumnType_JSON, Description: ""},
-			{Name: "first_certificate_id", Type: proto.ColumnType_INT, Description: ""},
-			{Name: "is_active", Type: proto.ColumnType_BOOL, Description: ""},
-			{Name: "content_type", Type: proto.ColumnType_STRING, Description: ""},
+			{Name: "url", Type: proto.ColumnType_STRING, Description: "URL of the CA represented by this issuer record."},
+			{Name: "result", Type: proto.ColumnType_STRING, Description: "Status of the certificate last issued by CA."},
+			{Name: "ca_certificate_ids", Type: proto.ColumnType_JSON, Description: "Certificate IDs issued by the CA issuer."},
+			{Name: "first_certificate_id", Type: proto.ColumnType_INT, Description: "First certificate ID issued by the CA issuer."},
+			{Name: "is_active", Type: proto.ColumnType_BOOL, Description: "True if the certificate is active."},
+			{Name: "content_type", Type: proto.ColumnType_STRING, Description: "Content of the certifcate issued by the CA."},
 			// Other columns
-			{Name: "next_check_due", Type: proto.ColumnType_TIMESTAMP, Description: ""},
-			{Name: "last_checked", Type: proto.ColumnType_TIMESTAMP, Description: ""},
+			{Name: "next_check_due", Type: proto.ColumnType_TIMESTAMP, Description: "Time when the certificate will be checked next."},
+			{Name: "last_checked", Type: proto.ColumnType_TIMESTAMP, Description: "Time when the certificate was last checked."},
 		},
 	}
 }

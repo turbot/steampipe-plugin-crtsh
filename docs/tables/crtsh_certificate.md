@@ -13,7 +13,7 @@ select
 from
   crtsh_certificate
 where
-  query = 'steampipe.io'
+  query = 'steampipe.io';
 ```
 
 ### Enumerate and discover subdomains for a domain via certificate transparency
@@ -35,7 +35,7 @@ where
   -- filter out mixed domains (e.g. from shared status page services)
   domain like '%steampipe.io'
 order by
-  domain
+  domain;
 ```
 
 ### Get a specific certificate by crt.sh ID
@@ -47,7 +47,7 @@ select
 from
   crtsh_certificate
 where
-  id = 7203584052
+  id = 7203584052;
 ```
 
 ### Certificates valid at the current time
@@ -62,7 +62,7 @@ from
 where
   query = 'steampipe.io'
   and not_before < now()
-  and not_after > now()
+  and not_after > now();
 ```
 
 ### Current certificates for a specific domain
@@ -77,7 +77,7 @@ where
   query = 'cloud.steampipe.io'
   and dns_names ? 'cloud.steampipe.io'
   and not_before < now()
-  and not_after > now()
+  and not_after > now();
 ```
 
 ### Certificates expiring in the next 30 days
@@ -92,7 +92,7 @@ from
   crtsh_certificate
 where
   query = 'steampipe.io'
-  and not_after between now() and now() + interval '30 days'
+  and not_after between now() and now() + interval '30 days';
 ```
 
 ### Certificates issued in the last 30 days
@@ -107,7 +107,7 @@ from
   crtsh_certificate
 where
   query = 'steampipe.io'
-  and not_before between now() and now() - interval '30 days'
+  and not_before between now() and now() - interval '30 days';
 ```
 
 ### Certificate Authorities that have issued certificates for my domain
@@ -123,7 +123,7 @@ where
 group by
   issuer_org
 order by
-  count desc
+  count desc;
 ```
 
 ### Certificates by public key algorithm
@@ -139,7 +139,7 @@ where
 group by
   public_key_algorithm
 order by
-  count desc
+  count desc;
 ```
 
 ### Get certificate log entries for all current certificates of a domain
@@ -169,5 +169,5 @@ from
 where
   c.id = le.certificate_id
 order by
-  le.entry_id
+  le.entry_id;
 ```

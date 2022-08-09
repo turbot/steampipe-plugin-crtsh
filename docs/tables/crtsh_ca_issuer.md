@@ -19,7 +19,7 @@ from
   ca_issuers,
   cas
 where
-  ca_issuers.ca_id = cas.id
+  ca_issuers.ca_id = cas.id;
 ```
 
 ### CA Issuers by Content Type
@@ -33,7 +33,7 @@ from
 group by
   content_type
 order by
-  count desc
+  count desc;
 ```
 
 ### Inactive CA Issuers
@@ -47,7 +47,7 @@ select
 from
   crtsh_ca_issuer
 where
-  not is_active
+  not is_active;
 ```
 
 ### Get all CA's issued by the CA Issuer with ID 12
@@ -69,7 +69,7 @@ select
 from
   crtsh_ca
 where
-  id in (select id from ca_certs)
+  id in (select id from ca_certs);
 ```
 
 ### Check URL of CA Issuers that reported text/plain content
@@ -86,5 +86,5 @@ from
   net_http_request as req
 where
   cai.content_type = 'text/plain'
-  and req.url = cai.url
+  and req.url = cai.url;
 ```

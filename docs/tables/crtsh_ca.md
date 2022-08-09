@@ -16,7 +16,7 @@ order by
 limit 10;
 ```
 
-### Top 10 CA's by number of certificates issued
+### Details of top 10 CA's by number of certificates issued
 
 ```sql
 select
@@ -41,5 +41,5 @@ from
 where
   name ilike 'C=AU%'
 order by
-  name
+  name;
 ```
