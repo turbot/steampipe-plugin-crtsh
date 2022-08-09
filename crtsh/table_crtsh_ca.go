@@ -32,7 +32,7 @@ func tableCrtshCa() *plugin.Table {
 			{Name: "num_precerts_issued", Type: proto.ColumnType_INT, Description: "Number of pre-certificates issued by the CA."},
 			{Name: "num_certs_expired", Type: proto.ColumnType_INT, Description: "Number of certificates from the CA that have expired."},
 			{Name: "num_precerts_expired", Type: proto.ColumnType_INT, Description: "Number of pre-certificates from the CA that have expired."},
-			{Name: "linting_applies", Type: proto.ColumnType_BOOL, Description: ""},
+			{Name: "linting_applies", Type: proto.ColumnType_BOOL, Description: "True if linting is applied to the certificate issued by the CA."},
 			// The public key format is a mystery to me, and I'm not sure it's even
 			// valuable, so I'm leaving it out for now.
 			//{Name: "public_key", Type: proto.ColumnType_STRING, Description: ""},
