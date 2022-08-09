@@ -72,7 +72,7 @@ where
   -- filter out mixed domains (e.g. from shared status page services)
   domain like '%steampipe.io'
 order by
-  domain
+  domain;
 ```
 
 ```
