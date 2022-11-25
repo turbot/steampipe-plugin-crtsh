@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/lib/pq v1.10.2
-	github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
+	github.com/turbot/steampipe-plugin-sdk/v4 v4.1.8
 )
 
 require (
