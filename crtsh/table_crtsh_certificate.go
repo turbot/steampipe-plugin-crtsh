@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableCrtshCertificate() *plugin.Table {
@@ -91,7 +91,7 @@ func listCertificate(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 			certificate_and_identities
 	`
 
-	quals := d.KeyColumnQuals
+	quals := d.EqualsQuals
 	whereClauses := []string{}
 	args := []interface{}{}
 
