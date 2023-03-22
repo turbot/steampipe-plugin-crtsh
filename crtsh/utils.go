@@ -17,8 +17,8 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func byteArrayToString(_ context.Context, d *transform.TransformData) (interface{}, error) {
