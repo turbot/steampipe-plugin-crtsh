@@ -16,7 +16,16 @@ The `crtsh_log_entry` table provides insights into the Certificate Transparency 
 ### Log entries for a particular certificate
 Determine the log entries associated with a specific certificate to analyze its activity and troubleshoot potential issues.
 
-```sql
+```sql+postgres
+select
+  *
+from
+  crtsh_log_entry
+where
+  certificate_id = 6760944046;
+```
+
+```sql+sqlite
 select
   *
 from
@@ -28,7 +37,7 @@ where
 ### Most recent entries for a given log
 Analyze the most recent entries in a given log to monitor changes or unusual activity over the past hour. This can be particularly useful for identifying potential security issues or troubleshooting ongoing problems.
 
-```sql
+```sql+postgres
 select
   *
 from
@@ -37,4 +46,15 @@ where
   certificate_id = 6760944046
   and ct_log_id = 91
   and entry_timestamp > now() - interval '1 hr';
+```
+
+```sql+sqlite
+select
+  *
+from
+  crtsh_log_entry
+where
+  certificate_id = 6760944046
+  and ct_log_id = 91
+  and entry_timestamp > datetime('now', '-1 hour');
 ```

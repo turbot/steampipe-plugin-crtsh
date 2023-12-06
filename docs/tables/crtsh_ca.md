@@ -16,7 +16,7 @@ The `crtsh_ca` table provides insights into Certificate Authorities within crt.s
 ### Top 10 CA's by number of certificates issued
 Determine the areas in which Certificate Authorities have issued the most certificates. This can assist in identifying which Certificate Authorities are the most active or popular, providing valuable insights into the digital certificate landscape.
 
-```sql
+```sql+postgres
 select
   *
 from
@@ -26,10 +26,20 @@ order by
 limit 10;
 ```
 
+```sql+sqlite
+select
+  *
+from
+  crtsh_ca
+order by
+  num_certs_issued desc
+limit 10;
+```
+
 ### Details of top 10 CA's by number of certificates issued
 Explore which Certificate Authorities have issued the most certificates, providing a ranking of the top 10 based on the number of current, non-expired certificates they've issued. This helps in understanding the distribution and influence of various Certificate Authorities in the industry.
 
-```sql
+```sql+postgres
 select
   id,
   name,
@@ -42,16 +52,40 @@ order by
 limit 10;
 ```
 
+```sql+sqlite
+select
+  id,
+  name,
+  num_certs_issued - num_certs_expired as num_certs_current,
+  num_certs_issued
+from
+  crtsh_ca
+order by
+  (case when num_certs_current is null then 1 else 0 end), num_certs_current desc
+limit 10;
+```
+
 ### CA's based in Australia
 Explore which Certificate Authorities are based in Australia. This can be beneficial when you want to identify and assess the elements within the Australian digital security landscape.
 
-```sql
+```sql+postgres
 select
   *
 from
   crtsh_ca
 where
   name ilike 'C=AU%'
+order by
+  name;
+```
+
+```sql+sqlite
+select
+  *
+from
+  crtsh_ca
+where
+  name like 'C=AU%'
 order by
   name;
 ```
