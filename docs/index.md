@@ -8,6 +8,7 @@ short_name: "crtsh"
 description: "Steampipe plugin to query certificates, logs and more from the crt.sh certificate transparency database."
 og_description: "Query crt.sh with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/crtsh-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # crt.sh + Steampipe
