@@ -22,7 +22,7 @@ that seek to eventually record all certificates issued by publicly trusted
 certificate authorities, allowing efficient identification of mistakenly or
 maliciously issued certificates.
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 Query certificates for a domain:
 
