@@ -8,6 +8,7 @@ short_name: "crtsh"
 description: "Steampipe plugin to query certificates, logs and more from the crt.sh certificate transparency database."
 og_description: "Query crt.sh with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/crtsh-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # crt.sh + Steampipe
@@ -21,7 +22,7 @@ that seek to eventually record all certificates issued by publicly trusted
 certificate authorities, allowing efficient identification of mistakenly or
 maliciously issued certificates.
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 Query certificates for a domain:
 
@@ -102,7 +103,4 @@ connection "crtsh" {
 }
 ```
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-crtsh
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
