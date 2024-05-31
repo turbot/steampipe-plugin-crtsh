@@ -121,17 +121,35 @@ func connect(ctx context.Context, d *plugin.QueryData) (*sqlx.DB, error) {
 		}
 	}
 
-	connString := "postgres://guest@crt.sh:5432/certwatch?binary_parameters=yes"
-	db, err := sqlx.Connect("postgres", connString)
+	db, err := createNewConnection(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("crtsh_ca_issuer.listCaIssuer", "connection_error", err)
+		plugin.Logger(ctx).Error("connect", "connection_error", err)
 		return nil, err
 	}
 
 	// Save to cache
-	d.ConnectionManager.Cache.Set(cacheKey, db)
+	d.ConnectionManager.Cache.SetWithTTL(cacheKey, db, 30 * time.Minute)
 
 	return db, err
+}
+
+func createNewConnection(ctx context.Context, d *plugin.QueryData) (*sqlx.DB, error) {
+	connString := "postgres://guest@crt.sh:5432/certwatch?binary_parameters=yes"
+	db, err := sqlx.Connect("postgres", connString)
+	if err != nil {
+		plugin.Logger(ctx).Error("createNewConnection", "connection_error", err)
+		return nil, err
+	}
+
+	// Set the maximum number of concurrently open connections to 10.
+	db.SetMaxOpenConns(10)
+
+	// Set the maximum number of idle connections to 5.
+	db.SetMaxIdleConns(5)
+
+	// sets the maximum amount of time a connection may be reused.
+	db.SetConnMaxLifetime(30 * time.Minute)
+	return db, nil
 }
 
 func queryWithQuals(ctx context.Context, d *plugin.QueryData, inputQuery string) (query string, args []interface{}) {
