@@ -61,6 +61,9 @@ func serialNumberToHex(_ context.Context, d *transform.TransformData) (interface
 }
 
 func publicKeyToPem(ctx context.Context, d *transform.TransformData) (interface{}, error) {
+	if d.Value == nil {
+		return nil, nil
+	}
 	var result interface{}
 	switch d.Value.(type) {
 	case *ecdsa.PublicKey:
@@ -121,7 +124,7 @@ func connect(ctx context.Context, d *plugin.QueryData) (*sqlx.DB, error) {
 		}
 	}
 
-	connString := "postgres://guest@crt.sh:5432/certwatch?binary_parameters=yes"
+	connString := "postgres://guest@crt.sh:5432/certwatch?binary_parameters=yes&connect_timeout=60"
 	db, err := sqlx.Connect("postgres", connString)
 	if err != nil {
 		plugin.Logger(ctx).Error("crtsh_ca_issuer.listCaIssuer", "connection_error", err)
