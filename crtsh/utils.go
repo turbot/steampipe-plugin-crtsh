@@ -17,8 +17,8 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin/transform"
 )
 
 func byteArrayToString(_ context.Context, d *transform.TransformData) (interface{}, error) {
@@ -113,7 +113,7 @@ func ecdsaPublicKeyToPem(ctx context.Context, d *transform.TransformData) (inter
 func connect(ctx context.Context, d *plugin.QueryData) (*sqlx.DB, error) {
 
 	cacheKey := "crtsh"
-	if cachedData, ok := d.ConnectionManager.Cache.Get(cacheKey); ok {
+	if cachedData, ok := d.ConnectionCache.Get(ctx, cacheKey); ok {
 		conn := cachedData.(*sqlx.DB)
 		if err := conn.PingContext(ctx); err == nil {
 			// Cached connection is good, return it
@@ -129,7 +129,7 @@ func connect(ctx context.Context, d *plugin.QueryData) (*sqlx.DB, error) {
 	}
 
 	// Save to cache
-	d.ConnectionManager.Cache.Set(cacheKey, db)
+	_ = d.ConnectionCache.Set(ctx, cacheKey, db)
 
 	return db, err
 }
